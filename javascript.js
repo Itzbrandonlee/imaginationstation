@@ -9,6 +9,8 @@ $(function(){
         }
     });
 
+
+
     var paint = false;
     var paint_erase = "paint";
     var canvas = document.getElementById("paint");
@@ -101,5 +103,7 @@ $(function(){
     function stop(){
         paint = false;
     }
+
+
 
 });
