@@ -5,6 +5,7 @@ $(function(){
         slide: function(event, ui){
             $("#circle").height(ui.value);
             $("#circle").width(ui.value);
+            context.lineWidth = ui.value;
         }
     });
 
@@ -27,31 +28,9 @@ $(function(){
     context.lineJoin = "round";
     context.lineCap = "round";
 
-    container.mousedown(function(e){
-        paint = true;
-        context.beginPath();
-        mouse.x = e.pageX - this.offsetLeft;
-        mouse.y = e.pageY - this.offsetTop;
-        context.moveTo(mouse.x, mouse.y);
-    });
-
-    container.mousemove(function(e){
-        mouse.x = e.pageX - this.offsetLeft;
-        mouse.y = e.pageY - this.offsetTop;
-        if(paint == true){
-            if(paint_erase == "paint"){
-                context.strokeStyle = $("#paintColor").val();
-            } else {
-                context.strokeStyle = "white";
-            }
-            context.lineTo(mouse.x, mouse.y);
-            context.stroke();
-        }
-    });
-
-    container.mouseup(function(){
-        paint = false;
-    });
+    container.on("mousedown touchstart", start);
+    container.on("mousemove touchmove", move);
+    container.on("mouseup touchend", stop);
 
     container.mouseleave(function(){
         paint = false;
@@ -93,5 +72,34 @@ $(function(){
     $("#paintColor").change(function(){
         $("#circle").css("background-color", $(this).val());
     });
+
+    function start(e){
+        paint = true;
+        context.beginPath();
+        var touch = e.touches[0] || e.originalEvent.touches[0];
+        mouse.x = e.pageX - this.offsetLeft;
+        mouse.y = e.pageY - this.offsetTop;
+        context.moveTo(mouse.x, mouse.y);
+    }
+
+    function move(e){
+        e.preventDefault();
+        var touch = e.touches[0] || e.originalEvent.touches[0];
+        mouse.x = e.pageX - this.offsetLeft;
+        mouse.y = e.pageY - this.offsetTop;
+        if(paint == true){
+            if(paint_erase == "paint"){
+                context.strokeStyle = $("#paintColor").val();
+            } else {
+                context.strokeStyle = "white";
+            }
+            context.lineTo(mouse.x, mouse.y);
+            context.stroke();
+        }
+    }
+
+    function stop(){
+        paint = false;
+    }
 
 });
