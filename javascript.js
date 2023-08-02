@@ -36,6 +36,8 @@ $(function(){
     container.touchMove(move);
     container.touchEnd(end);
 
+    resizeCanvas();
+
     $("#reset").on("click",function(){
         context.clearRect(0, 0, canvas.width, canvas.height);
         paint_erase = "paint";
@@ -109,6 +111,12 @@ $(function(){
 
     function touchEnd(e){
         end(e.changedTouches[0]);
+    }
+
+    function resizeCanvas(){
+        canvas.width = window.innerWidth();
+        canvas.height = window.innerHeight();
+        start();
     }
 
     canvas.on('touchStart', touchStart);
