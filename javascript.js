@@ -111,8 +111,8 @@ $(function(){
         end(e.changedTouches[0]);
     }
 
-    canvas.addEventListener('touchStart', touchStart, false);
-    canvas.addEventListener('touchMove', touchMove, false);
-    canvas.addEventListener('touchEnd', touchEnd, false);
+    canvas.on('touchStart', touchStart);
+    canvas.on('touchMove', touchMove);
+    canvas.on('touchEnd', touchEnd);
 
 });
