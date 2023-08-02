@@ -1,0 +1,115 @@
+body {
+    text-align: center;
+    background: url(images/background.jpg) center center fixed;
+    background-size: cover;
+}
+
+#header {
+    background: linear-gradient(white, rgba(78, 107, 187, 0.9));
+    background: -webkit-linear-gradient(white, rgba(78, 107, 187, 0.9));
+    background: -moz-linear-gradient(white, rgba(78, 107, 187, 0.9));
+    background: -o-linear-gradient(white, rgba(78, 107, 187, 0.9));
+    background: -ms-linear-gradient(white, rgba(78, 107, 187, 0.9));
+    height: 80px;
+    width: 500px;
+    margin: 10px auto;
+    font-size: 3em;
+    color: white; 
+    line-height: 65px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px rgb(49, 49, 49);
+    -webkit-box-shadow: 2px 2px 6px rgb(49, 49, 49);
+    -moz-box-shadow: 2px 2px 6px rgb(49, 49, 49);
+
+}
+
+.inputcontainer {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.input {
+    height: 30px;
+    font-size: 1.3em;
+}
+
+#slider {
+    margin: 10px auto;
+}
+#circle {
+    height: 3px;
+    width: 3px;
+    border-radius: 50px;
+    background-color: black;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#thicknessInput{
+    position: relative;
+}
+
+#container {
+    width: 1050px;
+    height: 670px;
+    /* border: 1px solid rgb(34, 34, 34, 0.3); */
+    margin: 10px 0 0 7%; 
+    box-shadow: 2px 2px 4px black;
+    margin-bottom: 20px;
+}
+
+#paint {
+    background-color:white;
+    cursor: crosshair;
+    opacity: 50%;
+}
+
+.inputContainer2 {
+    width: 399px;
+    margin: 0 0 0 24.5%;
+    float: left;
+    
+}
+
+.input2 {
+    width: 133px;
+    color: rgba(78, 107, 187);
+    font-size: 1.3em;
+    float: left;
+}
+
+.button {
+    background: white;
+    height: 50px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 6px rgb(49, 49, 49);
+    -webkit-box-shadow: 2px 2px 6px rgb(49, 49, 49);
+    -moz-box-shadow: 2px 2px 6px rgb(49, 49, 49);
+}
+
+.button:hover{
+    color: white;
+    background-color: rgba(78, 107, 187);
+    box-shadow: 0 0 0 rgb(49, 49, 49);
+    -webkit-box-shadow: 0 0 0 rgb(49, 49, 49);
+    -moz-box-shadow: 0 0 0 rgb(49, 49, 49);
+}
+
+.button:active{
+    top: 4px;
+}
+
+.eraseMode {
+    background-color: red;
+    color: white;
+}
