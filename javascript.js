@@ -30,9 +30,36 @@ $(function(){
     context.lineJoin = "round";
     context.lineCap = "round";
 
-    container.on("mousedown touchstart", start);
-    container.on("mousemove touchmove", move);
-    container.on("mouseup touchend", stop);
+    container.on("mousedown touchstart", function(e){
+        paint = true;
+        context.beginPath();
+        mouse.x = e.pageX || e.touches[0].pageX;
+        mouse.y = e.pageY || e.touches[0].pageY;
+        mouse.x -= this.offsetLeft;
+        mouse.y -= this.offsetTop;
+        context.moveTo(mouse.x, mouse.y);
+    });
+
+    container.on("mousemove touchmove", function(e){
+        e.preventDefault();
+        mouse.x = e.pageX || e.touches[0].pageX;
+        mouse.y = e.pageY || e.touches[0].pageY;
+        mouse.x -= this.offsetLeft;
+        mouse.y -= this.offsetTop;
+        if(paint == true){
+            if(paint_erase == "paint"){
+                context.strokeStyle = $("#paintColor").val();
+            } else {
+                context.strokeStyle = "white";
+            }
+            context.lineTo(mouse.x, mouse.y);
+            context.stroke();
+        }
+    });
+
+    container.on("mouseup touchend", function(){
+        paint = false;
+    });
 
     container.mouseleave(function(){
         paint = false;
@@ -75,34 +102,7 @@ $(function(){
         $("#circle").css("background-color", $(this).val());
     });
 
-    function start(e){
-        paint = true;
-        context.beginPath();
-        var touch = e.touches[0] || e.originalEvent.touches[0];
-        mouse.x = e.pageX - this.offsetLeft;
-        mouse.y = e.pageY - this.offsetTop;
-        context.moveTo(mouse.x, mouse.y);
-    }
 
-    function move(e){
-        e.preventDefault();
-        var touch = e.touches[0] || e.originalEvent.touches[0];
-        mouse.x = e.pageX - this.offsetLeft;
-        mouse.y = e.pageY - this.offsetTop;
-        if(paint == true){
-            if(paint_erase == "paint"){
-                context.strokeStyle = $("#paintColor").val();
-            } else {
-                context.strokeStyle = "white";
-            }
-            context.lineTo(mouse.x, mouse.y);
-            context.stroke();
-        }
-    }
-
-    function stop(){
-        paint = false;
-    }
 
 
 
